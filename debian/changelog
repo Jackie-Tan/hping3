@@ -1,11 +1,15 @@
 hping3 (3.a2.ds2-8) unstable; urgency=medium
 
   * New maintainer upload. (Closes: #939423)
+    Thank you Guillaume Delacour.
   * Bumped DH level to 11.
   * debian/control:
       - Bumped Standards-Version to 4.4.0
       - Changed Priority to optional.
       - Updated the maintainer.
+      - Updated the Vcs-* fields.
+  * debian/copyright:
+      - Updated file.
 
 
  -- Marcio de Souza Oliveira <marciosouza@debian.org>  Tue, 10 Sep 2019 01:07:36 +0000
