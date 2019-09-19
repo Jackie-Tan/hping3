@@ -19,8 +19,7 @@
 #include <stdlib.h>
 
 #if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || \
-    defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__) || \
-    defined(__GNU__)
+    defined(__bsdi__) || defined(__APPLE__)
 #include <ifaddrs.h>
 #include <net/route.h>
 #endif /* defined(__*BSD__) */
@@ -30,7 +29,7 @@
 
 #if !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__NetBSD__) && \
     !defined(__linux__) && !defined(__sun__) && !defined(__bsdi__) && \
-    !defined(__APPLE__) && !defined(__FreeBSD_kernel__) && !defined(__GNU__)
+    !defined(__APPLE__)
 #error Sorry, interface code not implemented.
 #endif
 
@@ -40,7 +39,7 @@
 #include <net/if_dl.h>
 #endif
 
-#if (defined OSTYPE_LINUX) || (defined __sun__) || defined(__GNU__)
+#if (defined OSTYPE_LINUX) || (defined __sun__)
 int get_if_name(void)
 {
 	int fd;
@@ -175,7 +174,7 @@ int get_if_name(void)
 }
 
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
-      defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__)
+      defined(__bsdi__) || defined(__APPLE__)
 
 /* return interface informations :
    - from the specified (-I) interface
@@ -207,7 +206,7 @@ int get_if_name(void)
                                 printf("DEBUG: Output interface address: %s\n",
                                         inet_ntoa(output_if_addr.sin_addr));
 			/* Put something in saved_ifname in order to tell
-			   that the output address is known */
+			   that the output adress is known */
 			saved_ifname[0] = 'X'; saved_ifname[1] = 0;
                 } else {
                         fprintf(stderr, "Warning: Unable to guess the output "
@@ -243,8 +242,6 @@ int get_if_name(void)
 			continue;
 		}
 
-/* GNU Hurd doesn't have AF_LINK support */
-#ifdef AF_LINK
 		if (ifa->ifa_addr->sa_family == AF_LINK) {
 			if (opt_debug)
 				printf("DEBUG: AF_LINK ");
@@ -275,7 +272,6 @@ int get_if_name(void)
 #endif /* __NetBSD__ */
 			continue;
 		}
-#endif /* AF_LINK */
 
 		if (ifa->ifa_addr->sa_family == AF_INET6) {
 			if (opt_debug)

@@ -46,7 +46,7 @@ void send_udp(void)
 	memcpy(&pseudoheader->saddr, &local.sin_addr.s_addr, 4);
 	memcpy(&pseudoheader->daddr, &remote.sin_addr.s_addr, 4);
 	pseudoheader->protocol		= 17; /* udp */
-	pseudoheader->length		= htons(packet_size);
+	pseudoheader->lenght		= htons(packet_size);
 
 	/* udp header */
 	udp->uh_dport	= htons(dst_port);

@@ -67,7 +67,7 @@
 #define ARS_MAX_IP_SIZE		65535
 
 #define ARS_IP_MF ((unsigned short)0x2000)	/* more fragments */
-#define ARS_IP_DF ((unsigned short)0x4000)	/* don't fragment */
+#define ARS_IP_DF ((unsigned short)0x4000)	/* dont fragment */
 #define ARS_IP_RF ((unsigned short)0x8000)	/* reserved fragment flag */
 
 #define ARS_IPOPT_COPY		0x80
@@ -308,7 +308,7 @@ struct ars_pseudohdr
 	__u32 daddr;
 	__u8  zero;
 	__u8  protocol;
-	__u16 length;
+	__u16 lenght;
 };
 
 /* The IGRP header structure */

@@ -18,7 +18,7 @@
 
 void show_version(void)
 {
-	printf("hping3 version %s (%s)\n", RELEASE_VERSION, RELEASE_DATE);
+	printf("hping version %s (%s)\n", RELEASE_VERSION, RELEASE_DATE);
 #ifdef USE_TCL
 	printf("This binary is TCL scripting capable\n");
 #else

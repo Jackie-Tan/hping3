@@ -26,7 +26,7 @@ void data_handler(char *data, int data_size)
 	}
 
 	if (opt_sign) {
-		memcpy(data, sign, signlen); /* length pre-checked */
+		memcpy(data, sign, signlen); /* lenght pre-checked */
 		data+=signlen;
 		data_size-=signlen;
 	}

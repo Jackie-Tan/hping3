@@ -28,12 +28,10 @@ void send_tcp(void)
 	char			*packet, *data;
 	struct mytcphdr		*tcp;
 	struct pseudohdr	*pseudoheader;
-	unsigned char		*opts;
+	unsigned char		*tstamp;
 
-	if (opt_tcp_mss)
-		tcp_opt_size += 4;
 	if (opt_tcp_timestamp)
-		tcp_opt_size += 12;
+		tcp_opt_size = 12;
 
 	packet_size = TCPHDR_SIZE + tcp_opt_size + data_size;
 	packet = malloc(PSEUDOHDR_SIZE + packet_size);
@@ -43,7 +41,7 @@ void send_tcp(void)
 	}
 	pseudoheader = (struct pseudohdr*) packet;
 	tcp =  (struct mytcphdr*) (packet+PSEUDOHDR_SIZE);
-	opts = (unsigned char*) (packet+PSEUDOHDR_SIZE+TCPHDR_SIZE);
+	tstamp = (unsigned char*) (packet+PSEUDOHDR_SIZE+TCPHDR_SIZE);
 	data = (char*) (packet+PSEUDOHDR_SIZE+TCPHDR_SIZE+tcp_opt_size);
 	
 	memset(packet, 0, PSEUDOHDR_SIZE+packet_size);
@@ -52,7 +50,7 @@ void send_tcp(void)
 	memcpy(&pseudoheader->saddr, &local.sin_addr.s_addr, 4);
 	memcpy(&pseudoheader->daddr, &remote.sin_addr.s_addr, 4);
 	pseudoheader->protocol		= 6; /* tcp */
-	pseudoheader->length		= htons(TCPHDR_SIZE+tcp_opt_size+data_size);
+	pseudoheader->lenght		= htons(TCPHDR_SIZE+tcp_opt_size+data_size);
 
 	/* tcp header */
 	tcp->th_dport	= htons(dst_port);
@@ -66,24 +64,14 @@ void send_tcp(void)
 	tcp->th_win	= htons(src_winsize);
 	tcp->th_flags	= tcp_th_flags;
 
-	/* tcp MSS option */
-	if (opt_tcp_mss) {
-		opts[0] = 2;
-		opts[1] = 4;  /* 4 bytes, kind+len+MSS */
-		opts[2] = tcp_mss >> 8;
-		opts[3] = tcp_mss & 0xff;
-		opts += 4;
-	}
-
 	/* tcp timestamp option */
 	if (opt_tcp_timestamp) {
 		__u32 randts = rand() ^ (rand() << 16);
-		opts[0] = opts[1] = 1; /* NOOP */
-		opts[2] = 8;
-		opts[3] = 10; /* 10 bytes, kind+len+T1+T2 */
-		memcpy(opts+4, &randts, 4); /* random */
-		memset(opts+8, 0, 4); /* zero */
-		opts += 12;
+		tstamp[0] = tstamp[1] = 1; /* NOOP */
+		tstamp[2] = 8;
+		tstamp[3] = 10; /* 10 bytes, kind+len+T1+T2 */
+		memcpy(tstamp+4, &randts, 4); /* random */
+		memset(tstamp+8, 0, 4); /* zero */
 	}
 
 	/* data */

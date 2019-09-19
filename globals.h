@@ -32,8 +32,7 @@ extern unsigned int
 		tcp_seqnum,
 		set_ack,
 		ip_header_length,
-		tcp_ack,
-		tcp_mss;
+		tcp_ack;
 
 extern unsigned short int
 		data_size;
@@ -78,7 +77,6 @@ extern int	opt_debug,
 		opt_tcpexitcode,
 		opt_badcksum,
 		opt_tr_keep_ttl,
-		opt_tcp_mss,
 		opt_tcp_timestamp,
 		opt_tr_stop,
 		opt_tr_no_rtt,

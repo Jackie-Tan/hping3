@@ -83,7 +83,7 @@ void send_icmp_echo(void)
 	icmp->type = opt_icmptype;	/* echo replay or echo request */
 	icmp->code = opt_icmpcode;	/* should be indifferent */
 	icmp->checksum = 0;
-	icmp->un.echo.id = icmp_ip_id == DEFAULT_ICMP_IP_ID ? getpid() & 0xffff : icmp_ip_id;
+	icmp->un.echo.id = getpid() & 0xffff;
 	icmp->un.echo.sequence = _icmp_seq;
 
 	/* data */
@@ -243,7 +243,7 @@ void send_icmp_other(void)
 	memcpy(&pseudoheader->saddr, &icmp_ip_src.sin_addr.s_addr, 4);
 	memcpy(&pseudoheader->daddr, &icmp_ip_dst.sin_addr.s_addr, 4);
 	pseudoheader->protocol = icmp_ip.protocol;
-	pseudoheader->length = icmp_ip.tot_len;
+	pseudoheader->lenght = icmp_ip.tot_len;
 	icmp_udp->uh_sport = htons(icmp_ip_srcport);
 	icmp_udp->uh_dport = htons(icmp_ip_dstport);
 	icmp_udp->uh_ulen  = htons(UDPHDR_SIZE + udp_data_len);

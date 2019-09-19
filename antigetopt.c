@@ -142,7 +142,7 @@ chain_start:
 #define UNK_LONG_ERRSTRING "unrecognized option `--%s'\n"
 #define ARG_SHORT_ERRSTRING "option requires an argument -- %c\n"
 #define ARG_LONG_ERRSTRING "option `--%s' requires an argument\n"
-#define AMB_ERRSTRING "option `--%s' is ambiguous\n"
+#define AMB_ERRSTRING "option `--%s' is ambiguos\n"
 #define IERR_ERRSTRING "internal error. ago_gnu_error() called with " \
 			   "a bad error code (%d)\n"
 void ago_gnu_error(char *pname, int error)

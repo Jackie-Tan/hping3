@@ -10,7 +10,10 @@ hping3 (3.a2.ds2-8) unstable; urgency=medium
       - Updated the Vcs-* fields.
   * debian/copyright:
       - Updated file.
-
+  * debian/patches:
+      - Created the patch fix_icmp_ipid.patch.
+        Thanks David Eisner. (Closes: LP: #1527431)
+      - Updated the description of 070_tcl.diff.
 
  -- Marcio de Souza Oliveira <marciosouza@debian.org>  Tue, 10 Sep 2019 01:07:36 +0000
 

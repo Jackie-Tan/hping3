@@ -48,13 +48,6 @@ if [  $CONFIGOSTYPE = "BSD/OS" ]; then
 	CONFIGOSTYPE=BSDI
 fi
 
-# for GNU/kFreeBSD, change GNU/KFREEBSD to GNUKFREEBSD, to
-# not including '/'
-if [ $CONFIGOSTYPE = "GNU/KFREEBSD" ]
-then
-	CONFIGOSTYPE=GNUKFREEBSD
-fi
-
 case $CONFIGOSTYPE in
   SUNOS)
     SOLARISLIB="-lsocket -lresolv -lnsl"
@@ -68,11 +61,23 @@ esac
 #
 # TCL detection
 #
-TCLSH=$(which tclsh 2>/dev/null)
-
-if [ -f "$TCLSH" ]
+for TCLPATH_TRY in "/usr/bin/" "/usr/local/bin/" "/bin/"
+do
+	for TCLVER_TRY in "8.4" "8.3" "8.2" "8.1" "8.0"
+	do
+		if [ -z $TCLSH ]
+		then
+			TCLSH_TRY=${TCLPATH_TRY}tclsh${TCLVER_TRY}
+			if [ -f $TCLSH_TRY ]
+			then
+				TCLSH=$TCLSH_TRY
+				echo "===> Found Tclsh in: $TCLSH"
+			fi
+		fi
+	done
+done
+if [ -f $TCLSH ]
 then
-	echo "===> Found Tclsh in: $TCLSH"
 	TCL_VER=`echo puts \\$tcl_version | $TCLSH -`
 	USE_TCL='-DUSE_TCL'
 	TCL_LIB="-ltcl${TCL_VER}"
@@ -90,24 +95,18 @@ then
 		TCL_LIB=""
 		echo "==> WARNING: no Tcl header files found!"
 	fi
-
-	if [ -n $USE_TCL ]
-	then
-		LIBPOSTFIX=`echo puts \\$tcl_version | $TCLSH -`
-		TCL_LIB="-ltcl${LIBPOSTFIX} -lm -lpthread"
-	fi
-else
-	if [ "$1" != "--no-tcl" ]
-	then
-		echo "==> WARNING: no Tcl binary found!"
-	fi
+fi
+if [ -n $USE_TCL ]
+then
+	LIBPOSTFIX=`ls -1 /usr/local/lib/ /usr/lib | grep 'libtcl[0-9]' | grep so | sed -e 's/\.so.*//g' -e 's/libtcl//g' | sort -r | head -1`
+	TCL_LIB="-ltcl${LIBPOSTFIX} -lm -lpthread"
 fi
 
 #
 # configurable stuff
 #
 PCAP="PCAP=-lpcap"
-PCAP_INCLUDE="-I/usr/include/pcap"
+PCAP_INCLUDE=""
 
 for ARG in $*; do
 	case "$ARG" in

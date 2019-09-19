@@ -17,3 +17,4 @@
 170_gnu_hurd.diff
 180_dpkg-buildflags.diff
 190_ip_optlen_conflicting_types.diff
+fix_icmp_ipid.patch

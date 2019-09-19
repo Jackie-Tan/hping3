@@ -28,19 +28,16 @@
 #include <unistd.h>		/* close */
 
 #if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || \
-    defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__) || \
-    defined(__GNU__)
+    defined(__bsdi__) || defined(__APPLE__)
 #include <stdlib.h>
 #include <ifaddrs.h>
 #include <net/route.h>
-#if !defined(__GNU__)
 #include <net/if_media.h>
-#endif
 #endif /* defined(__*BSD__) */
 
 #if !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__NetBSD__) && \
     !defined(__linux__) && !defined(__sun__) && !defined(__bsdi__) && \
-    !defined(__APPLE__) && !defined(__FreeBSD_kernel__) && !defined(__GNU__)
+    !defined(__APPLE__)
 #error Sorry, interface code not implemented.
 #endif
 
@@ -64,7 +61,7 @@
  * the interfaces.
  *
  * On error -1 is returned, and errno set. */
-#if (defined OSTYPE_LINUX) || (defined __sun__) || defined(__GNU__)
+#if (defined OSTYPE_LINUX) || (defined __sun__)
 int hping_get_interfaces(struct hpingif *hif, int ilen)
 {
 	int fd, found = 0, i;
@@ -190,7 +187,7 @@ int hping_get_interfaces(struct hpingif *hif, int ilen)
 #endif
 
 #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
-      defined(__bsdi__) || defined(__APPLE__) || defined(__FreeBSD_kernel__)
+      defined(__bsdi__) || defined(__APPLE__)
 /* I wish getifaddrs() API on linux... -- SS */
 int hping_get_interfaces(struct hpingif *hif, int ilen)
 {

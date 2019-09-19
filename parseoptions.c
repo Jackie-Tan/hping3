@@ -31,7 +31,7 @@ enum {	OPT_COUNT, OPT_INTERVAL, OPT_NUMERIC, OPT_QUIET, OPT_INTERFACE,
 	OPT_RROUTE, OPT_IPPROTO, OPT_ICMP_IPVER, OPT_ICMP_IPHLEN,
 	OPT_ICMP_IPLEN, OPT_ICMP_IPID, OPT_ICMP_IPPROTO, OPT_ICMP_CKSUM,
 	OPT_ICMP_TS, OPT_ICMP_ADDR, OPT_TCPEXITCODE, OPT_FAST, OPT_TR_KEEP_TTL,
-	OPT_TCP_TIMESTAMP, OPT_TCP_MSS, OPT_TR_STOP, OPT_TR_NO_RTT, OPT_ICMP_HELP,
+	OPT_TCP_TIMESTAMP, OPT_TR_STOP, OPT_TR_NO_RTT, OPT_ICMP_HELP,
 	OPT_RAND_DEST, OPT_RAND_SOURCE, OPT_LSRR, OPT_SSRR, OPT_ROUTE_HELP,
 	OPT_ICMP_IPSRC, OPT_ICMP_IPDST, OPT_ICMP_SRCPORT, OPT_ICMP_DSTPORT,
 	OPT_ICMP_GW, OPT_FORCE_ICMP, OPT_APD_SEND, OPT_SCAN, OPT_FASTER,
@@ -124,7 +124,6 @@ static struct ago_optlist hping_optlist[] = {
 	{ '\0', "force-icmp",	OPT_FORCE_ICMP,		AGO_NOARG },
 	{ '\0', "beep",		OPT_BEEP,		AGO_NOARG },
 	{ '\0', "flood",	OPT_FLOOD,		AGO_NOARG },
-	{ '\0', "tcp-mss",	OPT_TCP_MSS,		AGO_NEEDARG|AGO_EXCEPT0 },
 	AGO_LIST_TERM
 };
 
@@ -175,7 +174,7 @@ void parse_route(unsigned char *route, unsigned int *route_len, char *str)
                         str[j++] = '/';
                     break;
                 }
-                fprintf(stderr, "invalid IP address in route\n");
+                fprintf(stderr, "invalid IP adress in route\n");
                 fail_parse_route();
             case ':':
                 if ((!i) && j && j < 4)
@@ -216,12 +215,12 @@ int parse_options(int argc, char **argv)
 		case AGO_UNKNOWN:
 		case AGO_REQARG:
 		case AGO_AMBIG:
-			ago_gnu_error("hping3", o);
-			fprintf(stderr, "Try hping3 --help\n");
+			ago_gnu_error("hping", o);
+			fprintf(stderr, "Try hping --help\n");
 			exit(1);
 		case AGO_ALONE:
 			if (targethost_set == 1) {
-				fprintf(stderr, "hping3: you must specify only "
+				fprintf(stderr, "hping: you must specify only "
 						"one target host at a time\n");
 				exit(1);
 			} else {
@@ -464,10 +463,6 @@ int parse_options(int argc, char **argv)
 			break;
 		case OPT_ICMP_IPID:
 			icmp_ip_id = strtol(ago_optarg, NULL, 0);
-			if (icmp_ip_id < 0 || icmp_ip_id > 0xffff) {
-				fprintf(stderr, "Bad ICMP IP ID, resetting to random.\n");
-				icmp_ip_id = DEFAULT_ICMP_IP_ID;
-			}
 			break;
 		case OPT_ICMP_IPPROTO:
 			icmp_ip_protocol = strtol(ago_optarg, NULL, 0);
@@ -557,10 +552,6 @@ int parse_options(int argc, char **argv)
 		case OPT_FLOOD:
 			opt_flood = TRUE;
 			break;
-		case OPT_TCP_MSS:
-			opt_tcp_mss = TRUE;
-			tcp_mss = strtoul(ago_optarg, NULL, 0);
-			break;
 		}
 	}
 
@@ -578,12 +569,9 @@ int parse_options(int argc, char **argv)
 	if (opt_numeric == TRUE) opt_gethost = FALSE;
 
 	/* some error condition */
-	if (data_size+IPHDR_SIZE+
-	    (opt_udpmode?UDPHDR_SIZE:TCPHDR_SIZE) > 65535) {
+	if (data_size+IPHDR_SIZE+TCPHDR_SIZE > 65535) {
 		printf("Option error: sorry, data size must be <= %lu\n",
-			(unsigned long)(65535-(IPHDR_SIZE+
-					(opt_udpmode?UDPHDR_SIZE:TCPHDR_SIZE)))
-				       );
+			(unsigned long)(65535-IPHDR_SIZE+TCPHDR_SIZE));
 		exit(1);
 	}
 	else if (count <= 0 && count != -1) {

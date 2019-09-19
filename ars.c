@@ -698,7 +698,7 @@ int ars_udptcp_cksum(struct ars_packet *pkt, int layer, u_int16_t *sum)
 	memcpy(&pseudo.daddr, &ip->daddr, 4);
 	pseudo.protocol = (pkt->p_layer[layer].l_type == ARS_TYPE_TCP)
 		? ARS_IPPROTO_TCP : ARS_IPPROTO_UDP;
-	pseudo.length = htons(ars_relative_size(pkt, layer));
+	pseudo.lenght = htons(ars_relative_size(pkt, layer));
 
 	/* Finally do the checksum */
 	ars_multi_cksum(&mc, ARS_MC_INIT, NULL, 0);
@@ -914,8 +914,7 @@ int ars_bsd_fix(struct ars_packet *pkt, unsigned char *packet, size_t size)
 		return -ARS_INVALID;
 	}
 	ip = (struct ars_iphdr*) packet;
-#if defined OSTYPE_FREEBSD || defined OSTYPE_NETBSD || defined OSTYPE_BSDI || \
-	defined OSTYPE_GNUKFREEBSD
+#if defined OSTYPE_FREEBSD || defined OSTYPE_NETBSD || defined OSTYPE_BSDI
 	ip->tot_len = ntohs(ip->tot_len);
 	ip->frag_off = ntohs(ip->frag_off);
 #endif

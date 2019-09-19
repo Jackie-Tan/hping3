@@ -121,7 +121,7 @@
 #define DEFAULT_ICMP_IP_IHL		(IPHDR_SIZE >> 2)
 #define	DEFAULT_ICMP_IP_TOS		0
 #define DEFAULT_ICMP_IP_TOT_LEN		0 /* computed by send_icmp_*() */
-#define DEFAULT_ICMP_IP_ID		-1 /* rand */
+#define DEFAULT_ICMP_IP_ID		0 /* rand */
 #define DEFAULT_ICMP_CKSUM		-1 /* -1 means compute the cksum */
 #define DEFAULT_ICMP_IP_PROTOCOL	6 /* TCP */
 #define DEFAULT_RAW_IP_PROTOCOL		6 /* TCP */
@@ -134,7 +134,7 @@
 	
 /* fragmentation defines */
 #define MF ((unsigned short)0x2000)	/* more fragments */
-#define DF ((unsigned short)0x4000)	/* don't fragment */
+#define DF ((unsigned short)0x4000)	/* dont fragment */
 #define NF ((unsigned short)0x0000)	/* no more fragments */
 
 /* ip options defines */
@@ -337,7 +337,7 @@ struct pseudohdr
 	__u32 daddr;
 	__u8  zero;
 	__u8  protocol;
-	__u16 length;
+	__u16 lenght;
 };
 
 #define PSEUDOHDR_SIZE sizeof(struct pseudohdr)

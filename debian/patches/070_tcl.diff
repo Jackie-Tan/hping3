@@ -1,4 +1,4 @@
-Subject: Harcode libtcl version to be that of the default tclsh
+Subject: Hardcode libtcl version to be that of the default tclsh
  and add a less maintenance tclsh detection
  (don't want refresh the patch when new tcl versions)
 Author: Romain Francoise <rfrancoise@debian.org>,

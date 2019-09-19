@@ -343,7 +343,7 @@ options. If in doubt try
 .I -N --id
 Set ip->id field. Default id is random but if fragmentation is turned on
 and id isn't specified it will be
-.BR "getpid() & 0xFFFF" ,
+.BR "getpid() & 0xFF" ,
 to implement a better solution is in TODO list.
 .TP
 .I -H --ipproto
