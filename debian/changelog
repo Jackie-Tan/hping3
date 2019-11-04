@@ -1,3 +1,11 @@
+hping3 (3.a2.ds2-9) unstable; urgency=medium
+
+  * debian/control:
+      - Bumped Standards-Version to 4.4.1.
+  * Rebuilds to source-only upload. 
+
+ -- Marcio de Souza Oliveira <marciosouza@debian.org>  Sun, 03 Nov 2019 22:12:39 -0300
+
 hping3 (3.a2.ds2-8) unstable; urgency=medium
 
   * New maintainer upload. (Closes: #939423)
