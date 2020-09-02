@@ -1,0 +1,16 @@
+Description: Fixes declaration of global variable
+Author: Marcio de Souza Oliveira <marciosouza@debian.org>
+Last-Update: 2020-09-02
+Index: hping3/hping2.h
+===================================================================
+--- hping3.orig/hping2.h
++++ hping3/hping2.h
+@@ -353,7 +353,7 @@ struct delaytable_element {
+ 	int status;
+ };
+ 
+-volatile struct delaytable_element delaytable[TABLESIZE];
++extern volatile struct delaytable_element delaytable[TABLESIZE];
+ 
+ /* protos */
+ void	nop(void);				/* nop */
