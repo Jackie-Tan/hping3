@@ -1,7 +1,17 @@
 hping3 (3.a2.ds2-10) unstable; urgency=medium
 
+  * debian/control:
+      - Bumped Standards-Version to 4.5.0.
   * debian/patches:
-      - Created the patch 191_fix_ftbfs_with_gcc10.patch. (Closes: #957341)
+      - Created the patch 191_fix_ftbfs_with_gcc10.patch.
+       (Closes: #957341)
+  * debian/watch:
+      - added a fake site to explain about the current
+        status of the original upstream homepage.
+  * Using new DH level format. Consequently:
+     - debian/compat: removed.
+     - debian/control: changed from 'debhelper' to 'debhelper-compat' in
+       Build-Depends field and bumped level to 13.
 
  -- Marcio de Souza Oliveira <marciosouza@debian.org>  Wed, 02 Sep 2020 18:12:56 +0000
 

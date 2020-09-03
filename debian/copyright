@@ -20,7 +20,7 @@ Files: debian/*
 Copyright: 2004      Vincent Tantardini <vince@kerneled.net>
            2005-2009 Romain Francoise <rfrancoise@debian.org>
            2009-2014 Guillaume Delacour <gui@iroqwa.org>
-           2019      Marcio de Souza Oliveira <marciosouza@debian.org>
+           2019-2020 Marcio de Souza Oliveira <marciosouza@debian.org>
 License: GPL-2
 
 License: GPL-2
