@@ -1,2 +1,2 @@
-Tests: simple-test-hping3
+Tests: simple-test
 Restrictions: allow-stderr
