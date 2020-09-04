@@ -1,3 +1,2 @@
 Tests: simple-test
-Depends: @
-Restrictions: allow-stderr
+Restrictions: allow-stderr,isolation-container,needs-root

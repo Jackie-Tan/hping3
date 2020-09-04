@@ -5,6 +5,7 @@ hping3 (3.a2.ds2-10) unstable; urgency=medium
   * debian/patches:
       - Created the patch 191_fix_ftbfs_with_gcc10.patch.
        (Closes: #957341)
+  * debian/rules: updated file.
   * debian/salsa-ci.yml: added to provide CI tests for Salsa.
   * debian/tests/control:
       - Added the simple-test.
