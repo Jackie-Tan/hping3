@@ -1,2 +1,2 @@
 Test-Command: hping3 -c 1 127.0.0.1
-Restrictions: allow-stderr,isolation-container,needs-root
+Restrictions: allow-stderr,needs-root
