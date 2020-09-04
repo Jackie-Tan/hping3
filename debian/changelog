@@ -8,7 +8,7 @@ hping3 (3.a2.ds2-10) unstable; urgency=medium
   * debian/rules: updated file.
   * debian/salsa-ci.yml: added to provide CI tests for Salsa.
   * debian/tests/control:
-      - Added the simple-test.
+      - Added to provide a simple test.
   * debian/watch:
       - added a fake site to explain about the current
         status of the original upstream homepage.
