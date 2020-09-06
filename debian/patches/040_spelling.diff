@@ -1,10 +1,12 @@
 Subject: Various spelling fixes.
 Author: Romain Francoise <rfrancoise@debian.org>
-Last-Updated: 2005-03-12
+Last-Updated: 2020-09-06
 
---- hping3-3.a2.ds1.orig/antigetopt.c
-+++ hping3-3.a2.ds1/antigetopt.c
-@@ -142,7 +142,7 @@
+Index: hping3/antigetopt.c
+===================================================================
+--- hping3.orig/antigetopt.c
++++ hping3/antigetopt.c
+@@ -142,7 +142,7 @@ chain_start:
  #define UNK_LONG_ERRSTRING "unrecognized option `--%s'\n"
  #define ARG_SHORT_ERRSTRING "option requires an argument -- %c\n"
  #define ARG_LONG_ERRSTRING "option `--%s' requires an argument\n"
@@ -13,9 +15,11 @@ Last-Updated: 2005-03-12
  #define IERR_ERRSTRING "internal error. ago_gnu_error() called with " \
  			   "a bad error code (%d)\n"
  void ago_gnu_error(char *pname, int error)
---- hping3-3.a2.ds1.orig/statistics.c
-+++ hping3-3.a2.ds1/statistics.c
-@@ -30,7 +30,7 @@
+Index: hping3/statistics.c
+===================================================================
+--- hping3.orig/statistics.c
++++ hping3/statistics.c
+@@ -30,7 +30,7 @@ void	print_statistics(int signal_id)
  			lossrate = 100;
  
  	fprintf(stderr, "\n--- %s hping statistic ---\n", targetname);
@@ -24,3 +28,16 @@ Last-Updated: 2005-03-12
  			"%d%% packet loss\n", sent_pkt, recv_pkt, lossrate);
  	if (out_of_sequence_pkt)
  		fprintf(stderr, "%d out of sequence packets received\n",
+Index: hping3/ars.c
+===================================================================
+--- hping3.orig/ars.c
++++ hping3/ars.c
+@@ -361,7 +361,7 @@ void *ars_add_data(struct ars_packet *pk
+ 	static void *ptr = "zzappt"; /* we can't return NULL for size == 0 */
+ 
+ 	if (size < 0) {
+-		ars_set_error(pkt, "Tryed to add a DATA layer with size < 0");
++		ars_set_error(pkt, "Tried to add a DATA layer with size < 0");
+ 		return NULL;
+ 	}
+ 	retval = ars_add_generic(pkt, size, ARS_TYPE_DATA);

@@ -1,11 +1,13 @@
 hping3 (3.a2.ds2-10) unstable; urgency=medium
 
+  * debian/changelog: removed some whitespaces.
   * debian/control:
       - Added field Rules-Requires-Root.
       - Bumped Standards-Version to 4.5.0.
   * debian/patches:
       - Created the patch 191_fix_ftbfs_with_gcc10.patch.
        (Closes: #957341)
+      - Updated the patch 040_spelling.diff.
   * debian/rules: updated file.
   * debian/salsa-ci.yml: added to provide CI tests for Salsa.
   * debian/tests/control:
@@ -13,6 +15,7 @@ hping3 (3.a2.ds2-10) unstable; urgency=medium
   * debian/watch:
       - added a fake site to explain about the current
         status of the original upstream homepage.
+  * Ran wrap-and-sort.
   * Using new DH level format. Consequently:
       - debian/compat: removed.
       - debian/control: changed from 'debhelper' to 'debhelper-compat' in
@@ -227,4 +230,3 @@ hping3 (3.a2-1) unstable; urgency=low
   * Initial Release. (Closes: #267153)
 
  -- Vincent Tantardini <vince@kerneled.org>  Sun, 10 Oct 2004 20:24:03 +0200
-
