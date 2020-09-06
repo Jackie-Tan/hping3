@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: hping3
 Upstream-Contact: Salvatore Sanfilippo <antirez@invece.org>
 Source: http://www.hping.org/download.php

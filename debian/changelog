@@ -1,6 +1,7 @@
 hping3 (3.a2.ds2-10) unstable; urgency=medium
 
   * debian/control:
+      - Added field Rules-Requires-Root.
       - Bumped Standards-Version to 4.5.0.
   * debian/patches:
       - Created the patch 191_fix_ftbfs_with_gcc10.patch.
@@ -23,7 +24,7 @@ hping3 (3.a2.ds2-9) unstable; urgency=medium
 
   * debian/control:
       - Bumped Standards-Version to 4.4.1.
-  * Rebuilds to source-only upload. 
+  * Rebuilds to source-only upload.
 
  -- Marcio de Souza Oliveira <marciosouza@debian.org>  Sun, 03 Nov 2019 22:12:39 -0300
 
@@ -80,7 +81,7 @@ hping3 (3.a2.ds2-6.1) unstable; urgency=low
 
 hping3 (3.a2.ds2-6) unstable; urgency=low
 
-  * debian/patches/140_data_size_udp.diff: Fix incorrect data size 
+  * debian/patches/140_data_size_udp.diff: Fix incorrect data size
     check for UDP (Closes: #546590), thanks to Luca Bigliardi.
   * debian/patches/150_gnu_kfreebsd.diff: Fix FTBFS for kfreebsd-{i386,amd64}.
   * debian/patches/160_tcp_mss.diff: Add support to TCP MSS from NetBSD:
