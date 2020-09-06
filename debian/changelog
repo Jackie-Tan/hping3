@@ -8,7 +8,9 @@ hping3 (3.a2.ds2-10) unstable; urgency=medium
       - Created the patch 191_fix_ftbfs_with_gcc10.patch.
        (Closes: #957341)
       - Updated the patch 040_spelling.diff.
-  * debian/rules: updated file.
+  * debian/rules: 
+      - Removed uninecessary lines.
+      - Updated to convert the hping3 french manpage to UTF-8.
   * debian/salsa-ci.yml: added to provide CI tests for Salsa.
   * debian/tests/control:
       - Added to provide a simple test.

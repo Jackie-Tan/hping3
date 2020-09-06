@@ -6,6 +6,12 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 override_dh_auto_configure:
 	MANPATH=/usr/share/man ./configure
 
+override_dh_installman:
+	dh_installman
+	mkdir --parents $(CURDIR)/debian/hping3/usr/share/man/fr/man8
+	iconv -t UTF-8 -c $(CURDIR)/docs/french/hping2-fr.8 \
+	| gzip -9 --stdout - > $(CURDIR)/debian/hping3/usr/share/man/fr/man8/hping3.8.gz
+
 # do not compress example TCL scripts
 override_dh_compress:
 	dh_compress --exclude=.htcl
